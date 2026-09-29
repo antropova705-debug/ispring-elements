@@ -27,30 +27,31 @@
 
     /* Подсказка */
     .hint {
-      margin: 0 0 14px;
-      padding: 12px 16px;
+      margin: 0 0 16px;
+      padding: 13px 16px;
 
       background: #f5f2ff;
       border: 1px solid #ddd6ff;
       border-radius: 8px;
 
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 500;
       line-height: 1.4;
       text-align: center;
+
       color: #514a6b;
     }
 
-    /* Контейнер flip-карточки */
+    /* Контейнер карточки */
     .flip-card {
       width: 100%;
-      height: 76px;
+      height: 92px;
       perspective: 1000px;
       cursor: pointer;
       outline: none;
     }
 
-    /* Внутренняя часть */
+    /* Внутренняя часть карточки */
     .flip-card-inner {
       position: relative;
       width: 100%;
@@ -65,17 +66,19 @@
       transform: rotateX(180deg);
     }
 
-    /* Обе стороны */
+    /* Обе стороны карточки */
     .card-front,
     .card-back {
       position: absolute;
+
       width: 100%;
       height: 100%;
 
       display: flex;
       align-items: center;
+      gap: 14px;
 
-      padding: 14px 16px;
+      padding: 16px 18px;
 
       border: 1px solid #e5e1f5;
       border-radius: 10px;
@@ -90,7 +93,6 @@
 
     /* Лицевая сторона */
     .card-front {
-      gap: 14px;
       background: #faf9ff;
     }
 
@@ -105,112 +107,119 @@
       border-color: #cfc5ff;
 
       transform: rotateX(180deg);
-
-      gap: 14px;
     }
 
-    /* Номер */
+    /* Номер шага */
     .number {
       display: flex;
       align-items: center;
       justify-content: center;
 
-      flex: 0 0 30px;
-      width: 30px;
-      height: 30px;
+      flex: 0 0 34px;
+      width: 34px;
+      height: 34px;
 
       border-radius: 50%;
       background: #6547f5;
 
       color: #ffffff;
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 700;
     }
 
-    /* Заголовок */
+    /* Название шага */
     .title {
       flex: 1;
 
-      font-size: 15px;
+      font-size: 18px;
       font-weight: 600;
-      line-height: 1.3;
+      line-height: 1.35;
 
       color: #202124;
     }
 
-    /* Подсказка справа */
+    /* Подробнее */
     .more {
       display: flex;
       align-items: center;
       gap: 7px;
 
-      font-size: 12px;
+      font-size: 15px;
       font-weight: 500;
 
       color: #6547f5;
       white-space: nowrap;
     }
 
+    /* Кнопка + */
     .plus {
       display: flex;
       align-items: center;
       justify-content: center;
 
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
 
       border-radius: 50%;
       background: #eeeaff;
 
-      font-size: 17px;
+      font-size: 18px;
       line-height: 1;
     }
 
-    /* Текст обратной стороны */
+    /* Текст на обратной стороне */
     .back-text {
       flex: 1;
 
-      font-size: 13px;
+      font-size: 18px;
       font-weight: 400;
       line-height: 1.45;
 
       color: #514f59;
     }
 
-    /* Кнопка возврата */
+    /* Назад */
     .back-action {
       flex: 0 0 auto;
 
-      font-size: 12px;
+      font-size: 15px;
       font-weight: 500;
-      color: #6547f5;
 
+      color: #6547f5;
       white-space: nowrap;
     }
 
     /* Стрелки */
     .arrow {
-      height: 28px;
+      height: 32px;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
       color: #6547f5;
-      font-size: 18px;
+      font-size: 22px;
       font-weight: 500;
       line-height: 1;
     }
 
-    /* Мобильная версия */
+    /* Адаптация под узкий экран */
     @media (max-width: 480px) {
 
       .hint {
-        font-size: 15px;
+        font-size: 16px;
       }
 
       .flip-card {
-        height: 92px;
+        height: 110px;
+      }
+
+      .title {
+        font-size: 16px;
+      }
+
+      .back-text {
+        font-size: 15px;
       }
 
       .more {
@@ -218,11 +227,7 @@
       }
 
       .more .plus {
-        font-size: 17px;
-      }
-
-      .back-text {
-        font-size: 12px;
+        font-size: 18px;
       }
 
       .back-action {
@@ -419,12 +424,10 @@
 
     cards.forEach(card => {
 
-      /* Клик мышкой */
       card.addEventListener('click', () => {
         card.classList.toggle('flipped');
       });
 
-      /* Enter или пробел с клавиатуры */
       card.addEventListener('keydown', event => {
 
         if (event.key === 'Enter' || event.key === ' ') {
