@@ -28,15 +28,17 @@
     /* Подсказка */
     .hint {
       margin: 0 0 14px;
-      padding: 10px 14px;
+      padding: 12px 16px;
 
       background: #f5f2ff;
       border: 1px solid #ddd6ff;
       border-radius: 8px;
 
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 500;
       line-height: 1.4;
+      text-align: center;
+
       color: #514a6b;
     }
 
@@ -80,7 +82,7 @@
       cursor: pointer;
     }
 
-    /* Номер */
+    /* Номер шага */
     .number {
       display: flex;
       align-items: center;
@@ -98,7 +100,7 @@
       font-weight: 700;
     }
 
-    /* Заголовок */
+    /* Название шага */
     .title {
       flex: 1;
 
@@ -145,7 +147,7 @@
       transform: rotate(45deg);
     }
 
-    /* Скрытый текст */
+    /* Текст внутри карточки */
     .details {
       display: none;
 
@@ -162,7 +164,7 @@
       display: block;
     }
 
-    /* Стрелки */
+    /* Стрелки между шагами */
     .arrow {
       height: 28px;
 
@@ -185,6 +187,10 @@
       .details {
         padding-left: 60px;
       }
+
+      .hint {
+        font-size: 15px;
+      }
     }
   </style>
 </head>
@@ -200,13 +206,18 @@
     <!-- Шаг 1 -->
     <div class="step">
       <button class="step-header" type="button">
+
         <span class="number">1</span>
-        <span class="title">Изучи обращение</span>
+
+        <span class="title">
+          Изучи обращение
+        </span>
 
         <span class="more">
           <span>Подробнее</span>
           <span class="plus">+</span>
         </span>
+
       </button>
 
       <div class="details">
@@ -219,13 +230,18 @@
     <!-- Шаг 2 -->
     <div class="step">
       <button class="step-header" type="button">
+
         <span class="number">2</span>
-        <span class="title">Определи проблему</span>
+
+        <span class="title">
+          Определи проблему
+        </span>
 
         <span class="more">
           <span>Подробнее</span>
           <span class="plus">+</span>
         </span>
+
       </button>
 
       <div class="details">
@@ -238,13 +254,18 @@
     <!-- Шаг 3 -->
     <div class="step">
       <button class="step-header" type="button">
+
         <span class="number">3</span>
-        <span class="title">Проверь Веб-КЦ</span>
+
+        <span class="title">
+          Проверь Веб-КЦ
+        </span>
 
         <span class="more">
           <span>Подробнее</span>
           <span class="plus">+</span>
         </span>
+
       </button>
 
       <div class="details">
@@ -257,13 +278,18 @@
     <!-- Шаг 4 -->
     <div class="step">
       <button class="step-header" type="button">
+
         <span class="number">4</span>
-        <span class="title">Проверь Базу знаний</span>
+
+        <span class="title">
+          Проверь Базу знаний
+        </span>
 
         <span class="more">
           <span>Подробнее</span>
           <span class="plus">+</span>
         </span>
+
       </button>
 
       <div class="details">
