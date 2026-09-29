@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 8px;
+      background: #ffffff;
+      font-family: Arial, sans-serif;
+      color: #161616;
+    }
+
+    .flow {
+      width: 100%;
+      max-width: 630px;
+      margin: 0 auto;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      padding: 12px 15px;
+
+      background: #f7f7f8;
+      border: 1px solid #dddddf;
+      border-radius: 10px;
+    }
+
+    .number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex: 0 0 29px;
+      width: 29px;
+      height: 29px;
+
+      border-radius: 50%;
+      background: #6547f5;
+      color: #ffffff;
+
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .description {
+      font-size: 13px;
+      line-height: 1.4;
+      color: #666666;
+    }
+
+    .arrow {
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: #999999;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="flow">
+
+    <div class="step">
+      <div class="number">1</div>
+      <div class="content">
+        <div class="title">Изучи обращение</div>
+        <div class="description">
+          Проверь текущий и предыдущие диалоги.
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <div class="step">
+      <div class="number">2</div>
+      <div class="content">
+        <div class="title">Определи ситуацию</div>
+        <div class="description">
+          Списание или неуспешная попытка оплаты?
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <div class="step">
+      <div class="number">3</div>
+      <div class="content">
+        <div class="title">Сформулируй, что нужно выяснить</div>
+        <div class="description">
+          Причину ошибки, назначение списания, платежей или отсутствия скидки.
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <div class="step">
+      <div class="number">4</div>
+      <div class="content">
+        <div class="title">Выбери раздел Веб-КЦ</div>
+        <div class="description">
+          Проверяй данные, которые помогут подтвердить причину.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
