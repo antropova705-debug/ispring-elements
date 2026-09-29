@@ -25,18 +25,62 @@
       margin: 0 auto;
     }
 
-    .step {
-      display: flex;
-      align-items: center;
-      gap: 14px;
+    /* Подсказка */
+    .hint {
+      margin: 0 0 14px;
+      padding: 10px 14px;
 
-      padding: 13px 16px;
+      background: #f5f2ff;
+      border: 1px solid #ddd6ff;
+      border-radius: 8px;
+
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: #514a6b;
+    }
+
+    /* Карточка */
+    .step {
+      width: 100%;
+      padding: 0;
 
       background: #faf9ff;
       border: 1px solid #e5e1f5;
       border-radius: 10px;
+
+      overflow: hidden;
+
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
     }
 
+    .step:hover {
+      border-color: #b9adff;
+      background: #f8f6ff;
+    }
+
+    /* Верхняя часть карточки */
+    .step-header {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      padding: 14px 16px;
+
+      border: 0;
+      background: transparent;
+
+      font-family: inherit;
+      text-align: left;
+
+      cursor: pointer;
+    }
+
+    /* Номер */
     .number {
       display: flex;
       align-items: center;
@@ -48,31 +92,77 @@
 
       border-radius: 50%;
       background: #6547f5;
-      color: #ffffff;
 
+      color: #ffffff;
       font-size: 13px;
       font-weight: 700;
     }
 
-    .content {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
+    /* Заголовок */
     .title {
+      flex: 1;
+
       font-size: 15px;
       font-weight: 600;
       line-height: 1.3;
+
+      color: #202124;
     }
 
-    .description {
+    /* Подробнее */
+    .more {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+
       font-size: 12px;
+      font-weight: 500;
+
+      color: #6547f5;
+      white-space: nowrap;
+    }
+
+    /* Кнопка + */
+    .plus {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 22px;
+      height: 22px;
+
+      border-radius: 50%;
+      background: #eeeaff;
+
+      font-size: 17px;
+      line-height: 1;
+
+      transition: transform 0.2s ease;
+    }
+
+    /* При раскрытии + превращается в × */
+    .step.open .plus {
+      transform: rotate(45deg);
+    }
+
+    /* Скрытый текст */
+    .details {
+      display: none;
+
+      padding: 0 16px 15px 60px;
+
+      font-size: 13px;
       font-weight: 400;
-      line-height: 1.45;
+      line-height: 1.5;
+
       color: #68666f;
     }
 
+    .step.open .details {
+      display: block;
+    }
+
+    /* Стрелки */
     .arrow {
       height: 28px;
 
@@ -85,6 +175,17 @@
       font-weight: 500;
       line-height: 1;
     }
+
+    /* Адаптация под узкий экран */
+    @media (max-width: 480px) {
+      .more span:first-child {
+        display: none;
+      }
+
+      .details {
+        padding-left: 60px;
+      }
+    }
   </style>
 </head>
 
@@ -92,57 +193,97 @@
 
   <div class="flow">
 
-    <div class="step">
-      <div class="number">1</div>
+    <p class="hint">
+      Нажми на карточку, чтобы узнать подробнее.
+    </p>
 
-      <div class="content">
-        <div class="title">Изучи обращение</div>
-        <div class="description">
-          Проверь текущий и предыдущие диалоги.
-        </div>
+    <!-- Шаг 1 -->
+    <div class="step">
+      <button class="step-header" type="button">
+        <span class="number">1</span>
+        <span class="title">Изучи обращение</span>
+
+        <span class="more">
+          <span>Подробнее</span>
+          <span class="plus">+</span>
+        </span>
+      </button>
+
+      <div class="details">
+        Внимательно ознакомься с обращением пользователя и проверь предыдущие диалоги. Там может быть важная информация, которая поможет разобраться в ситуации.
       </div>
     </div>
 
     <div class="arrow">↓</div>
 
+    <!-- Шаг 2 -->
     <div class="step">
-      <div class="number">2</div>
+      <button class="step-header" type="button">
+        <span class="number">2</span>
+        <span class="title">Определи проблему</span>
 
-      <div class="content">
-        <div class="title">Определи ситуацию</div>
-        <div class="description">
-          Списание или неуспешная попытка оплаты?
-        </div>
+        <span class="more">
+          <span>Подробнее</span>
+          <span class="plus">+</span>
+        </span>
+      </button>
+
+      <div class="details">
+        Определи, что интересует пользователя и с чем возникла сложность. Например, это может быть неуспешная попытка оплаты или списание за товар или услугу.
       </div>
     </div>
 
     <div class="arrow">↓</div>
 
+    <!-- Шаг 3 -->
     <div class="step">
-      <div class="number">3</div>
+      <button class="step-header" type="button">
+        <span class="number">3</span>
+        <span class="title">Проверь Веб-КЦ</span>
 
-      <div class="content">
-        <div class="title">Сформулируй, что нужно выяснить</div>
-        <div class="description">
-          Причину ошибки, назначение списания, платежей или отсутствия скидки.
-        </div>
+        <span class="more">
+          <span>Подробнее</span>
+          <span class="plus">+</span>
+        </span>
+      </button>
+
+      <div class="details">
+        Проверь данные, которые помогут разобраться в ситуации и ответить на вопрос пользователя.
       </div>
     </div>
 
     <div class="arrow">↓</div>
 
+    <!-- Шаг 4 -->
     <div class="step">
-      <div class="number">4</div>
+      <button class="step-header" type="button">
+        <span class="number">4</span>
+        <span class="title">Проверь Базу знаний</span>
 
-      <div class="content">
-        <div class="title">Выбери раздел Веб-КЦ</div>
-        <div class="description">
-          Проверяй данные, которые помогут подтвердить причину.
-        </div>
+        <span class="more">
+          <span>Подробнее</span>
+          <span class="plus">+</span>
+        </span>
+      </button>
+
+      <div class="details">
+        Найди информацию в Базе знаний, чтобы определить дальнейшие действия и подготовить ответ пользователю.
       </div>
     </div>
 
   </div>
+
+  <script>
+    const steps = document.querySelectorAll('.step');
+
+    steps.forEach(step => {
+      const button = step.querySelector('.step-header');
+
+      button.addEventListener('click', () => {
+        step.classList.toggle('open');
+      });
+    });
+  </script>
 
 </body>
 </html>
