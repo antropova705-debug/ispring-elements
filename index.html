@@ -38,51 +38,78 @@
       font-weight: 500;
       line-height: 1.4;
       text-align: center;
-
       color: #514a6b;
     }
 
-    /* Карточка */
-    .step {
+    /* Контейнер flip-карточки */
+    .flip-card {
       width: 100%;
-      padding: 0;
+      height: 76px;
+      perspective: 1000px;
+      cursor: pointer;
+      outline: none;
+    }
 
-      background: #faf9ff;
+    /* Внутренняя часть */
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      transition: transform 0.55s ease;
+      transform-style: preserve-3d;
+    }
+
+    /* Переворот */
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateX(180deg);
+    }
+
+    /* Обе стороны */
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+
+      padding: 14px 16px;
+
       border: 1px solid #e5e1f5;
       border-radius: 10px;
 
-      overflow: hidden;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
 
       transition:
         border-color 0.2s ease,
         background 0.2s ease;
     }
 
-    .step:hover {
+    /* Лицевая сторона */
+    .card-front {
+      gap: 14px;
+      background: #faf9ff;
+    }
+
+    .flip-card:hover .card-front {
       border-color: #b9adff;
       background: #f8f6ff;
     }
 
-    /* Верхняя часть карточки */
-    .step-header {
-      width: 100%;
+    /* Обратная сторона */
+    .card-back {
+      background: #f5f2ff;
+      border-color: #cfc5ff;
 
-      display: flex;
-      align-items: center;
+      transform: rotateX(180deg);
+
       gap: 14px;
-
-      padding: 14px 16px;
-
-      border: 0;
-      background: transparent;
-
-      font-family: inherit;
-      text-align: left;
-
-      cursor: pointer;
     }
 
-    /* Номер шага */
+    /* Номер */
     .number {
       display: flex;
       align-items: center;
@@ -100,7 +127,7 @@
       font-weight: 700;
     }
 
-    /* Название шага */
+    /* Заголовок */
     .title {
       flex: 1;
 
@@ -111,7 +138,7 @@
       color: #202124;
     }
 
-    /* Подробнее */
+    /* Подсказка справа */
     .more {
       display: flex;
       align-items: center;
@@ -124,7 +151,6 @@
       white-space: nowrap;
     }
 
-    /* Кнопка + */
     .plus {
       display: flex;
       align-items: center;
@@ -138,33 +164,31 @@
 
       font-size: 17px;
       line-height: 1;
-
-      transition: transform 0.2s ease;
     }
 
-    /* При раскрытии + превращается в × */
-    .step.open .plus {
-      transform: rotate(45deg);
-    }
-
-    /* Текст внутри карточки */
-    .details {
-      display: none;
-
-      padding: 0 16px 15px 60px;
+    /* Текст обратной стороны */
+    .back-text {
+      flex: 1;
 
       font-size: 13px;
       font-weight: 400;
-      line-height: 1.5;
+      line-height: 1.45;
 
-      color: #68666f;
+      color: #514f59;
     }
 
-    .step.open .details {
-      display: block;
+    /* Кнопка возврата */
+    .back-action {
+      flex: 0 0 auto;
+
+      font-size: 12px;
+      font-weight: 500;
+      color: #6547f5;
+
+      white-space: nowrap;
     }
 
-    /* Стрелки между шагами */
+    /* Стрелки */
     .arrow {
       height: 28px;
 
@@ -178,20 +202,34 @@
       line-height: 1;
     }
 
-    /* Адаптация под узкий экран */
+    /* Мобильная версия */
     @media (max-width: 480px) {
-      .more span:first-child {
-        display: none;
-      }
-
-      .details {
-        padding-left: 60px;
-      }
 
       .hint {
         font-size: 15px;
       }
+
+      .flip-card {
+        height: 92px;
+      }
+
+      .more {
+        font-size: 0;
+      }
+
+      .more .plus {
+        font-size: 17px;
+      }
+
+      .back-text {
+        font-size: 12px;
+      }
+
+      .back-action {
+        display: none;
+      }
     }
+
   </style>
 </head>
 
@@ -203,112 +241,201 @@
       Нажми на карточку, чтобы узнать подробнее.
     </p>
 
-    <!-- Шаг 1 -->
-    <div class="step">
-      <button class="step-header" type="button">
 
-        <span class="number">1</span>
+    <!-- ШАГ 1 -->
 
-        <span class="title">
-          Изучи обращение
-        </span>
+    <div class="flip-card" tabindex="0">
 
-        <span class="more">
-          <span>Подробнее</span>
-          <span class="plus">+</span>
-        </span>
+      <div class="flip-card-inner">
 
-      </button>
+        <div class="card-front">
 
-      <div class="details">
-        Внимательно ознакомься с обращением пользователя и проверь предыдущие диалоги. Там может быть важная информация, которая поможет разобраться в ситуации.
+          <span class="number">1</span>
+
+          <span class="title">
+            Изучи обращение
+          </span>
+
+          <span class="more">
+            Подробнее
+            <span class="plus">+</span>
+          </span>
+
+        </div>
+
+        <div class="card-back">
+
+          <span class="number">1</span>
+
+          <span class="back-text">
+            Внимательно ознакомься с обращением пользователя и проверь предыдущие диалоги. Там может быть важная информация, которая поможет разобраться в ситуации.
+          </span>
+
+          <span class="back-action">
+            Назад
+          </span>
+
+        </div>
+
       </div>
+
     </div>
+
 
     <div class="arrow">↓</div>
 
-    <!-- Шаг 2 -->
-    <div class="step">
-      <button class="step-header" type="button">
 
-        <span class="number">2</span>
+    <!-- ШАГ 2 -->
 
-        <span class="title">
-          Определи проблему
-        </span>
+    <div class="flip-card" tabindex="0">
 
-        <span class="more">
-          <span>Подробнее</span>
-          <span class="plus">+</span>
-        </span>
+      <div class="flip-card-inner">
 
-      </button>
+        <div class="card-front">
 
-      <div class="details">
-        Определи, что интересует пользователя и с чем возникла сложность. Например, это может быть неуспешная попытка оплаты или списание за товар или услугу.
+          <span class="number">2</span>
+
+          <span class="title">
+            Определи проблему
+          </span>
+
+          <span class="more">
+            Подробнее
+            <span class="plus">+</span>
+          </span>
+
+        </div>
+
+        <div class="card-back">
+
+          <span class="number">2</span>
+
+          <span class="back-text">
+            Определи, что интересует пользователя и с чем возникла сложность. Например, это может быть неуспешная попытка оплаты или списание за товар или услугу.
+          </span>
+
+          <span class="back-action">
+            Назад
+          </span>
+
+        </div>
+
       </div>
+
     </div>
+
 
     <div class="arrow">↓</div>
 
-    <!-- Шаг 3 -->
-    <div class="step">
-      <button class="step-header" type="button">
 
-        <span class="number">3</span>
+    <!-- ШАГ 3 -->
 
-        <span class="title">
-          Проверь Веб-КЦ
-        </span>
+    <div class="flip-card" tabindex="0">
 
-        <span class="more">
-          <span>Подробнее</span>
-          <span class="plus">+</span>
-        </span>
+      <div class="flip-card-inner">
 
-      </button>
+        <div class="card-front">
 
-      <div class="details">
-        Проверь данные, которые помогут разобраться в ситуации и ответить на вопрос пользователя.
+          <span class="number">3</span>
+
+          <span class="title">
+            Проверь Веб-КЦ
+          </span>
+
+          <span class="more">
+            Подробнее
+            <span class="plus">+</span>
+          </span>
+
+        </div>
+
+        <div class="card-back">
+
+          <span class="number">3</span>
+
+          <span class="back-text">
+            Проверь данные, которые помогут разобраться в ситуации и ответить на вопрос пользователя.
+          </span>
+
+          <span class="back-action">
+            Назад
+          </span>
+
+        </div>
+
       </div>
+
     </div>
+
 
     <div class="arrow">↓</div>
 
-    <!-- Шаг 4 -->
-    <div class="step">
-      <button class="step-header" type="button">
 
-        <span class="number">4</span>
+    <!-- ШАГ 4 -->
 
-        <span class="title">
-          Проверь Базу знаний
-        </span>
+    <div class="flip-card" tabindex="0">
 
-        <span class="more">
-          <span>Подробнее</span>
-          <span class="plus">+</span>
-        </span>
+      <div class="flip-card-inner">
 
-      </button>
+        <div class="card-front">
 
-      <div class="details">
-        Найди информацию в Базе знаний, чтобы определить дальнейшие действия и подготовить ответ пользователю.
+          <span class="number">4</span>
+
+          <span class="title">
+            Проверь Базу знаний
+          </span>
+
+          <span class="more">
+            Подробнее
+            <span class="plus">+</span>
+          </span>
+
+        </div>
+
+        <div class="card-back">
+
+          <span class="number">4</span>
+
+          <span class="back-text">
+            Найди информацию в Базе знаний, чтобы определить дальнейшие действия и подготовить ответ пользователю.
+          </span>
+
+          <span class="back-action">
+            Назад
+          </span>
+
+        </div>
+
       </div>
+
     </div>
 
   </div>
 
+
   <script>
-    const steps = document.querySelectorAll('.step');
 
-    steps.forEach(step => {
-      const button = step.querySelector('.step-header');
+    const cards = document.querySelectorAll('.flip-card');
 
-      button.addEventListener('click', () => {
-        step.classList.toggle('open');
+    cards.forEach(card => {
+
+      /* Клик мышкой */
+      card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
       });
+
+      /* Enter или пробел с клавиатуры */
+      card.addEventListener('keydown', event => {
+
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          card.classList.toggle('flipped');
+        }
+
+      });
+
     });
+
   </script>
 
 </body>
